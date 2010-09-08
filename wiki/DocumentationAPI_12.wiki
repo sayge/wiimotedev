@@ -1,0 +1,41 @@
+#summary API Documentation
+
+= Wiimotedev daemon documentation 1.2 =
+
+  # *D-Bus Interface*
+  # *Wiiremote API, org.wiimotedev.deviceEvents*
+  # *Service API, org.wiimotedev.service*
+
+= D-Bus Interface =
+*Service name: org.wiimotedev.daemon*
+
+Wiimotedev-daemon works on dbus system layer, provide full set api to communicate with wiiremotes. Service brings two interfaces, one for general communication with wiiremote(s) *_org.wiimotedev.deviceEvents_*, other for service management *_org.wiimotedev.service_*.
+
+= Wiiremote API _org.wiimotedev.deviceEvents_ =
+
+*uint id* - wiiremote identificator, is an ordinary number that's store wiiremote order. In methods below it's describe which one wiiremote will be used.
+
+=== method: QList< uint> dbusGetWiimoteList() ===
+  * *Description:* Method returns a list of connected wiiremotes. If list is emty there are no connection available 
+
+
+=== method: QStringList dbusGetUnregistredWiimoteList() =
+  * *Description:* Method returns a list of unregisterd wiiremotes. _*(List is stored only per session)*_
+
+=== method uchar dbusIsClassicConnected(uint id) ===
+  * *Description:* Method returns device connection status. If value is different from zero device is connected, otherwise is not.
+
+=== method uchar dbusIsNunchukConnected(uint id) ===
+  * *Description:* Method returns device connection status. If value is different from zero device is connected, otherwise is not.
+  * *Returns:* non-zero value when device is connected
+
+=== method uchar dbusIsWiimoteConnected(uint id) ===
+  * *Description:* Method returns device connection status. If value is different from zero device is connected, otherwise is not.
+
+=== method uint dbusWiimoteGetAverageLatency(uint id) ===
+  * *Description:* Method returns average value of wiiremote latency.
+
+=== uint dbusWiimoteGetBatteryLife(uint id) ===
+  * *Description:* Method returns value of wiiremote battery life.
+
+= Service API, _org.wiimotedev.service_ =
