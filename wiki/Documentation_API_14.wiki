@@ -1,6 +1,6 @@
 #summary API Documentation
 
-= Wiimotedev daemon documentation 1.3 =
+= Wiimotedev daemon documentation 1.4 =
 
   # *D-Bus Interface*
   # *Wiiremote API, org.wiimotedev.deviceEvents*
