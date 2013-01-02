@@ -13,7 +13,7 @@ Wiimotedev-daemon works on dbus system layer, provide full set api to communicat
 
 = Wiiremote API _org.wiimotedev.deviceEvents_ =
 
-*uint id* - wiiremote identificator, is an ordinary number that's store wiiremote order. In methods below it's describe which one wiiremote will be used.
+*uint id (aka quint32 id)* - wiiremote identificator, is an ordinary number that's store wiiremote order. In methods below it's describe which one wiiremote will be used.
 
 === Methods: ===
   * bool dbusIsClassicConnected(quint32 id)
@@ -25,13 +25,11 @@ Wiimotedev-daemon works on dbus system layer, provide full set api to communicat
   * quint8 dbusWiimoteGetLedStatus(quint32 id)
   * quint8 dbusWiimoteGetStatus(quint32 id)
   * QList < uint> dbusGetWiimoteList()
-  * QStringList dbusGetUnregistredWiimoteList()
   * bool dbusWiimoteGetRumbleStatus(quint32 id)
   * bool dbusWiimoteSetLedStatus(quint32 id, quint32 status)
   * bool dbusWiimoteSetRumbleStatus(quint32 id, bool status)
 
 === Signals: ===
-  * void dbusReportUnregistredWiimote(QString)
   * void dbusWiimoteGeneralButtons(quint32, quint64)
   * void dbusWiimoteConnected(quint32)
   * void dbusWiimoteDisconnected(quint32)
