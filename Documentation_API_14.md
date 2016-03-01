@@ -1,0 +1,53 @@
+# Wiimotedev daemon documentation 1.4 #
+
+  1. **D-Bus Interface**
+  1. **Wiiremote API, org.wiimotedev.deviceEvents**
+  1. **Service API, org.wiimotedev.service**
+
+# D-Bus Interface #
+**Service name: org.wiimotedev.daemon**
+
+Wiimotedev-daemon works on dbus system layer, provide full set api to communicate with wiiremotes. Service brings two interfaces, one for general communication with wiiremote(s) **_org.wiimotedev.deviceEvents_**, other for service management **_org.wiimotedev.service_**.
+
+# Wiiremote API _org.wiimotedev.deviceEvents_ #
+
+**uint id (aka quint32 id)** - wiiremote identificator, is an ordinary number that's store wiiremote order. In methods below it's describe which one wiiremote will be used.
+
+### Methods: ###
+  * bool dbusIsClassicConnected(quint32 id)
+  * bool dbusIsNunchukConnected(quint32 id)
+  * bool dbusIsWiimoteConnected(quint32 id)
+  * quint32 dbusWiimoteGetAverageLatency(quint32 id)
+  * quint32 dbusWiimoteGetBatteryLife(quint32 id)
+  * quint32 dbusWiimoteGetCurrentLatency(quint32 id)
+  * quint8 dbusWiimoteGetLedStatus(quint32 id)
+  * quint8 dbusWiimoteGetStatus(quint32 id)
+  * QList < uint> dbusGetWiimoteList()
+  * bool dbusWiimoteGetRumbleStatus(quint32 id)
+  * bool dbusWiimoteSetLedStatus(quint32 id, quint32 status)
+  * bool dbusWiimoteSetRumbleStatus(quint32 id, bool status)
+
+### Signals: ###
+  * void dbusWiimoteGeneralButtons(quint32, quint64)
+  * void dbusWiimoteConnected(quint32)
+  * void dbusWiimoteDisconnected(quint32)
+  * void dbusWiimoteBatteryLife(quint32, quint8)
+  * void dbusWiimoteButtons(quint32, quint64)
+  * void dbusWiimoteStatus(quint32, quint8)
+  * void dbusWiimoteInfrared(quint32, QList< struct irpoint>)
+  * void dbusWiimoteAcc(quint32, struct accdata)
+  * void dbusNunchukPlugged(quint32)
+  * void dbusNunchukUnplugged(quint32)
+  * void dbusNunchukButtons(quint32, quint64)
+  * void dbusNunchukStick(quint32, struct stickdata)
+  * void dbusNunchukAcc(quint32, struct accdata)
+  * void dbusClassicControllerPlugged(quint32)
+  * void dbusClassicControllerUnplugged(quint32)
+  * void dbusClassicControllerButtons(quint32, quint64)
+  * void dbusClassicControllerLStick(quint32, struct stickdata)
+  * void dbusClassicControllerRStick(quint32, struct stickdata)
+
+# Service API, _org.wiimotedev.service_ #
+
+### Methods: ###
+  * bool dbusReloadSequenceList();
